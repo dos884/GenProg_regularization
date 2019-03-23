@@ -71,7 +71,8 @@ def empiricalFuncDiff(fun1,fun2,points):
     loss = (math.fsum(sqerrors) / len(points))
     return loss
 
-OCCAM_PARAM = 1.0/10.0
+
+OCCAM_PARAM = 1.0 / 10
 BIG_NUM=6*10**64
 
 import re

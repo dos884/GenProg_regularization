@@ -40,12 +40,24 @@ toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("compile", gp.compile, pset=pset)
 
 
+def targetFunc(x):
+    return x ** 4 + x ** 3 + x ** 2 + x
+
 def evalSymbReg(individual, points):
     # Transform the tree expression in a callable function
     func = toolbox.compile(expr=individual)
     # Evaluate the mean squared error between the expression
     # and the real function : x**4 + x**3 + x**2 + x
-    sqerrors = ((func(x) - x ** 4 - x ** 3 - x ** 2 - x) ** 2 for x in points)
+    sqerrors = []
+    for x in points:
+        target = x ** 4 + x ** 3 + x ** 2 + x
+        val1 = (func(x) - x ** 4 - x ** 3 - x ** 2 - x)
+        val2 = func(x) - targetFunc(x)
+        if val1 != val2:
+            pass
+            # print("wat?!{}  {}".format(val1, val2))
+        sqerrors.append(val1 ** 2)
+
     return math.fsum(sqerrors) / len(points),
 
 
