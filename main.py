@@ -86,7 +86,7 @@ def evalSymbReg(individual, points):
     # Transform the tree expression in a callable function
     func = toolbox.compile(expr=individual)
     # Evaluate the mean squared error between the expression
-    loss = empiricalFuncDiff(func, targetFunc, points) #* (OCCAM_PARAM*len(individual.__str__()))
+    loss = empiricalFuncDiff(func, targetFunc, points) + (OCCAM_PARAM*len(individual.__str__()))
     if loss<0.00000001:
         loss = empiricalFuncDiff(func, targetFunc, points)
         L=individualLength(individual)
